@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a href="" class="navbar-brand">Student Management System</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a th:href="@{/students}" class="nav-link">Manage Student</a>
+            </li>
+        </ul>
+    </nav>
+    
+	<div class ="container">
+	    <div class = "row">
+	        <h1> List Students </h1>
+	    </div>  
+	    
+	    <div class="row">
+	    	<div class="col-lg-3">
+	    		<a th:href="@{/students/new}" class="btn btn-primary btn-sm mb-3"> Add Student </a>
+	    	</div>
+	    </div>
+	    <table class = "table table-striped table-bordered">
+	        <thead class = "table-dark">
+	            <tr>
+	            
+	                <th> Student Student Id</th>
+	                <th> Student First Name</th>
+	                <th> Student Last Name</th>
+	                <th> Student Email </th>
+	                <th> Actions </th>
+	            </tr>
+	        </thead>
+	
+	        <tbody>
+	        <tr th:each="Student : ${students}">
+	        	
+	        	<td th:text = "${Student.id}"></td>
+	        	<td th:text = "${Student.firstName}"></td>
+	        	<td th:text = "${Student.lastName}"></td>
+	        	<td th:text = "${Student.email}"></td>
+				<td>
+					<a th:href="@{/students/edit/{id}(id=${Student.id})}" class="btn btn-primary">Update</a>
+					<a th:href="@{/students/{id}(id=${Student.id})}" class="btn btn-danger">Delete</a>
+				</td>
+	        </tr>
+	        </tbody>
+	
+	    </table>
+	</div>
+</body>
+</html>
